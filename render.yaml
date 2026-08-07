@@ -1,3 +1,8 @@
+databases:
+  - name: pdfhub-db
+    plan: free
+    ipAllowList: []
+
 services:
   - type: web
     name: pdfhub
@@ -16,3 +21,11 @@ services:
         value: sync
       - key: MARKER_ENABLED
         value: "false"
+      - key: SESSION_DRIVER
+        value: file
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: pdfhub-db
+          property: connectionString
