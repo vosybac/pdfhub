@@ -16,6 +16,8 @@ WORKDIR /app
 COPY --from=vendor /app/vendor ./vendor
 COPY --from=assets /app/public/build ./public/build
 COPY . .
-RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs database bootstrap/cache
-EXPOSE 8080
-CMD ["sh", "-c", "[ -f .env ] || cp .env.example .env; php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs database bootstrap/cache \
+    && chmod +x docker/entrypoint.sh
+ENV PHP_CLI_SERVER_WORKERS=4
+EXPOSE 10000
+CMD ["/app/docker/entrypoint.sh"]
