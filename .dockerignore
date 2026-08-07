@@ -5,7 +5,8 @@ node_modules
 storage
 database/*.sqlite*
 .env
-.env.*
+.env.backup
+.env.production
 *.log
 public/build
 public/hot

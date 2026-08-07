@@ -18,4 +18,4 @@ COPY --from=assets /app/public/build ./public/build
 COPY . .
 RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs database bootstrap/cache
 EXPOSE 8080
-CMD ["sh", "-c", "php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
+CMD ["sh", "-c", "[ -f .env ] || cp .env.example .env; php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
