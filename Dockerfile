@@ -1,13 +1,11 @@
 FROM composer:2 AS vendor
 WORKDIR /app
-COPY composer.json composer.lock ./
+COPY . .
 RUN composer install --no-dev --no-interaction --no-progress --prefer-dist --optimize-autoloader
 
 FROM node:22-alpine AS assets
 WORKDIR /app
-COPY package.json ./
-COPY vite.config.js ./
-COPY resources ./resources
+COPY . .
 RUN npm install --no-audit --ignore-scripts=false && npm run build
 
 FROM php:8.3-cli
