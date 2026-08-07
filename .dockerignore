@@ -1,0 +1,12 @@
+.git
+venv-marker
+vendor
+node_modules
+storage
+database/*.sqlite*
+.env
+.env.*
+*.log
+public/build
+public/hot
+tests

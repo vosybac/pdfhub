@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: pdfhub
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /dashboard
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_NAME
+        value: PDFHub
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: MARKER_ENABLED
+        value: "false"
