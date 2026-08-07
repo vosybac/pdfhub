@@ -9,12 +9,14 @@ services:
     runtime: docker
     plan: free
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /dashboard
+    healthCheckPath: /
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
-        value: "false"
+        value: "true"
+      - key: LOG_CHANNEL
+        value: stderr
       - key: APP_NAME
         value: PDFHub
       - key: QUEUE_CONNECTION
