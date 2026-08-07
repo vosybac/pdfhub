@@ -42,6 +42,7 @@ class Author extends Model
     public function collaborators()
     {
         $rows = $this->documents()
+            ->reorder()
             ->join('document_author as da2', 'pdf_documents.id', '=', 'da2.document_id')
             ->where('da2.author_id', '!=', $this->id)
             ->selectRaw('da2.author_id as collab_id, COUNT(*) as papers_count')

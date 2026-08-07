@@ -6,6 +6,7 @@ use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('dashboard'));
+Route::get('/health', fn () => response('ok', 200));
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/api/network', [DashboardController::class, 'network'])->name('api.network');
